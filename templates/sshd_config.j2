@@ -1,0 +1,18 @@
+#
+# SSH config file 
+# Automatically updated via Ansible 
+# #
+Port 20000
+#SyslogFacility AUTH
+#LogLevel INFO
+LoginGraceTime 30s
+PermitRootLogin no
+MaxAuthTries 3
+#PubkeyAuthentication yes //TODO
+ChallengeResponseAuthentication no
+UsePAM yes
+X11Forwarding no
+PrintMotd no
+#PidFile /var/run/sshd.pid
+AcceptEnv LANG LC_*
+Subsystem	sftp	/usr/lib/openssh/sftp-server

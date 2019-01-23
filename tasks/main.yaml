@@ -1,0 +1,13 @@
+---
+
+- name: Run setup tasks
+  include: "setup.yaml"
+  tags: 'setup'
+
+- name: Run configuration tasks
+  include: "configure.yaml"
+  tags: 'config'
+
+- name: Run security tasks
+  include: "security.yaml"
+  tags: 'security'

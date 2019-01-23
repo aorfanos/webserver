@@ -1,0 +1,74 @@
+---
+- include_vars: vars/nginx_vars.yaml
+- include_vars: vars/vars.yaml
+
+- name: Setup nginx virtualhost file 
+  template:
+          src: templates/nginxdef_aepvp_forum.j2 
+          dest: /etc/nginx/sites-available/default
+          owner: root
+          group: root
+          mode: 0644
+          follow: yes #filesystem links should be followed
+  tags: nginx
+
+- name: Setup nginx configuration file
+  template:
+          src: files/nginx.conf
+          dest: /etc/nginx/nginx.conf
+          owner: root
+          group: root
+          mode: 0644
+  tags: nginx
+
+- name: Setup vsftpd configuration file
+  template:
+          src: templates/vsftpd.conf.j2
+          dest: /etc/vsftpd.conf
+          owner: root
+          group: root 
+          mode: 0644
+  tags: vsftpd
+
+- name: Setup vsftpd denied users userlist
+  template:
+          src: files/vsftpd.users
+          dest: /etc/vsftp.users
+          owner: root
+          group: root
+          mode: 0644
+  tags: vsftpd
+
+- name: Setup fail2ban sshd jail
+  template:
+          src: templates/fail2ban.jail.j2
+          dest: /etc/fail2ban/jail.local
+          owner: root
+          group: root
+          mode: 0644
+  tags: fail2ban
+
+- name: Enable and restart nginx
+  systemd:
+          name: nginx
+          state: restarted
+          enabled: yes
+  tags: nginx, daemons 
+          
+- name: Enable and restart vsftpd 
+  systemd:
+          name: vsftpd
+          state: restarted
+          enabled: yes
+  tags: ['vsftpd', 'daemons']
+
+- name: Enable and restart fail2ban
+  systemd:
+          name: fail2ban
+          state: restarted
+          enabled: yes
+  tags: ['fail2ban', 'daemons']
+
+- name: Reload all system daemons (just to make sure)
+  systemd:
+          daemon_reload: yes

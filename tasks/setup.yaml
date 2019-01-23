@@ -1,0 +1,9 @@
+---
+- include_vars: vars/vars.yaml
+
+- name: Update package repo & install required packages
+  apt:
+          name: "{{ required_packages }}"
+          state: present
+  tags: packages
+

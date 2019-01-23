@@ -1,0 +1,23 @@
+---
+required_packages:
+        - nginx
+        - mariadb-server
+        - fail2ban
+        - vsftpd
+        - ftp
+        - php7.0-fpm
+        - php7.0-cgi
+        - php7.0-cli
+        - php7.0-mysql
+        - php7.0-mbstring
+        - php7.0-mcrypt
+        - php7.0-opcache
+
+daemons:
+        - nginx
+        - mariadb
+        - fail2ban
+
+# fail2ban vars
+fail2ban_sshd_port: 20000
+fail2ban_log_path: "/var/log/auth_fail2ban.log"

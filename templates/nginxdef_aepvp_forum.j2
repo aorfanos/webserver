@@ -1,0 +1,31 @@
+#automatically updated via Ansible - debug
+#TODO: be further automated via use of vars, stay tuned
+
+server {
+	listen 80;
+	listen [::]:80;
+
+	server_name INSERT URI HERE; 
+	return 301 https://INSERT URI HERE;
+}
+
+server {
+	listen 443 ssl;
+	listen [::]:443;
+
+	server_name l2.aepvp.net;
+	
+	ssl on;
+	ssl_certificate {{ ssl_certificate }};
+	ssl_certificate_key {{ ssl_certificate_key }};
+
+	root /var/www/html;
+	index index.html;
+
+	
+	location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+	}
+}
+

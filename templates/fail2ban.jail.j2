@@ -1,0 +1,13 @@
+# Installed by Ansible
+
+[DEFAULT]
+bantime = -1
+maxfailures = 3
+
+[sshd]
+enabled = true
+port = {{ fail2ban_sshd_port }}
+logfile = {{ fail2ban_log_path }} 
+timeregex = S{3}s{1,2}d{1,2} d{2}:d{2}:d{2}
+timepattern = %%b %%d %%H:%%M:%%S
+failregex = : (?:(?:Authentication failure|Failed [-/w+]+) for(?: [iI](?:llegal|nvalid) user)?|[Ii](?:llegal|nvalid) user|ROOT LOGIN REFUSED) .*(?: from|FROM) (?:::f{4,6}:)?(?PS*)

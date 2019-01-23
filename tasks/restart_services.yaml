@@ -1,0 +1,13 @@
+---
+
+- include_vars: vars/vars.yaml
+
+- name: Enable services
+  systemd:
+          name: "{{ daemons }}"
+          enabled: yes
+
+- name: Restart services
+  systemd:
+          name: "{{ daemons }}" 
+          state: restarted
