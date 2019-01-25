@@ -1,6 +1,22 @@
 ---
-required_packages:
+required_packages_deb:
         - nginx
+        - mariadb-server
+        - fail2ban
+        - vsftpd
+        - ftp
+        - php7.0-fpm
+        - php7.0-cgi
+        - php7.0-cli
+        - php7.0-mysql
+        - php7.0-mbstring
+        - php7.0-mcrypt
+        - php7.0-opcache
+
+required_packages_rhel:
+        - nginx
+        - epel-release
+        - yum-utils
         - mariadb-server
         - fail2ban
         - vsftpd
