@@ -38,3 +38,6 @@ daemons:
 # fail2ban vars
 fail2ban_sshd_port: 20000
 fail2ban_log_path: "/var/log/auth_fail2ban.log"
+
+#sshd vars
+sshd_port: 20000
