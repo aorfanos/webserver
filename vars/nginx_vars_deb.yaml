@@ -1,0 +1,6 @@
+---
+nginx_user: www-data 
+nginx_group: www-data
+
+ssl_certificate: "Your certificate file goes here"
+ssl_certificate_key: "Your key file goes here"

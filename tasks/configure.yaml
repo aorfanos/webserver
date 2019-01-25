@@ -1,6 +1,16 @@
 ---
-- include_vars: vars/nginx_vars.yaml
+- include_vars: vars/nginx_vars_rhel.yaml
+  when: ansible_os_family == 'RedHat'
+- include_vars: vars/nginx_vars_deb.yaml
+  when: ansible_os_family == 'Debian'
 - include_vars: vars/vars.yaml
+
+- name: Create /sites-available for nginx
+  file:
+          path: /etc/nginx/sites-available
+          owner: "{{ nginx_user }}"
+          group: "{{ nginx_group }}"
+          state: directory
 
 - name: Setup nginx virtualhost file 
   template:
@@ -14,7 +24,7 @@
 
 - name: Setup nginx configuration file
   template:
-          src: files/nginx.conf
+          src: templates/nginx.conf.j2
           dest: /etc/nginx/nginx.conf
           owner: root
           group: root

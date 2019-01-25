@@ -1,3 +1,6 @@
 ---
+nginx_user: nginx
+nginx_group: nginx
+
 ssl_certificate: "Your certificate file goes here"
 ssl_certificate_key: "Your key file goes here"

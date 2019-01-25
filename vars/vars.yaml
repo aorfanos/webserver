@@ -21,13 +21,14 @@ required_packages_rhel:
         - fail2ban
         - vsftpd
         - ftp
-        - php7.0-fpm
-        - php7.0-cgi
-        - php7.0-cli
-        - php7.0-mysql
-        - php7.0-mbstring
-        - php7.0-mcrypt
-        - php7.0-opcache
+        - php
+        - php-fpm
+        - php-cgi
+        - php-cli
+        - php-mysql
+        - php-mbstring
+        - php-mcrypt
+        - php-opcache
 
 daemons:
         - nginx

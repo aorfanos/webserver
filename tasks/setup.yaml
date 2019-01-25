@@ -9,16 +9,16 @@
   when: ansible_os_family == 'Debian'
 
 - name: Install dependencies for installing PHP7.0 (RHEL specific)
-  command: yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+  command: yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
   when: ansible_os_family == 'RedHat'
 
+- name: Enable Remi's repo as default for installing PHP (RHEL specific)
+  command: yum-config-manager --enable remi-php70
+  when: ansible_os_family == 'RedHat'
+ 
 - name: Update package repo & install required packages
   yum:
           name: "{{ required_packages_rhel }}"
           state: present
   tags: packages
-  when: ansible_os_family == 'RedHat'
-
-- name: Enable Remi's repo as default for installing PHP (RHEL specific)
-  command: yum-config-manager --enable remi-php70
   when: ansible_os_family == 'RedHat'
