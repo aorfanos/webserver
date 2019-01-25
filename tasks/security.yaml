@@ -1,4 +1,5 @@
 ---
+- include_vars: vars/vars.yaml
 
 - name: Setup hardened ssh configuration file
   template:
@@ -12,7 +13,7 @@
 
 - name: Change SELinux to allow non-standard port (RHEL specific)
   seport:
-          ports: "{{ port }}"
+          ports: "{{ sshd_port }}"
           proto: tcp
           setype: ssh_port_t
           state: present
