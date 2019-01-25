@@ -4,7 +4,7 @@
 
 - name: Setup nginx virtualhost file 
   template:
-          src: templates/nginxdef_aepvp_forum.j2 
+          src: templates/nginxdef.j2 
           dest: /etc/nginx/sites-available/default
           owner: root
           group: root
