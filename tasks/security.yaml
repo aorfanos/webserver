@@ -10,6 +10,14 @@
           validate: '/usr/sbin/sshd -T -f %s'
   tags: ssh
 
+- name: Change SELinux to allow non-standard port (RHEL specific)
+  seport:
+          ports: "{{ port }}"
+          proto: tcp
+          setype: ssh_port_t
+          state: present
+  when: ansible_os_family == 'RedHat'
+
 - name: Restart ssh daemon
   systemd:
           name: sshd
